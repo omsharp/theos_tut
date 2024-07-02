@@ -3,7 +3,7 @@ import Link from "next/link";
 import { db } from "~/server/db";
 import { posts } from "~/server/db/schema";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 const mockUrls = [
   "https://uploadthing-prod-sea1.s3.us-west-2.amazonaws.com/38408236-5d63-49bc-b6d9-ce981098be8a-k3vyhf.jpg",
