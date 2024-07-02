@@ -1,5 +1,9 @@
 import { index } from "drizzle-orm/mysql-core";
 import Link from "next/link";
+import { db } from "~/server/db";
+import { posts } from "~/server/db/schema";
+
+export const dynamic = "force-dynamic";
 
 const mockUrls = [
   "https://uploadthing-prod-sea1.s3.us-west-2.amazonaws.com/38408236-5d63-49bc-b6d9-ce981098be8a-k3vyhf.jpg",
@@ -16,11 +20,15 @@ const mockImages = mockUrls.map((url, index) => ({
   url,
 }));
 
-export default function HomePage() {
+export default async function HomePage() {
+  const allPosts = await db.select().from(posts);
   return (
     <main className="">
       <div className="flex flex-wrap gap-4">
-        {[...mockImages, ...mockImages, ...mockImages].map((image) => (
+        {allPosts.map((post) => (
+          <div key={post.id}>{post.name}</div>
+        ))}
+        {mockImages.map((image) => (
           <div key={image.id} className="w-48">
             <img src={image.url}></img>
           </div>
