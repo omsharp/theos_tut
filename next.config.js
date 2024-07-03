@@ -12,6 +12,9 @@ const config = {
   eslint: {
     ignoreDuringBuilds: true, // makes build faster
   },
+  experimental:{
+    serverComponentsExternalPackages: ["@noders/argon2"]
+  }
 };
 
 export default config;
