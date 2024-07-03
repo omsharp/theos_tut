@@ -7,11 +7,12 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
-export const posts = pgTable(
-  "post",
+export const images = pgTable(
+  "image",
   {
     id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }),
+    name: varchar("name", { length: 256 }).notNull(),
+    url: varchar("url", { length: 1024 }).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
@@ -19,5 +20,6 @@ export const posts = pgTable(
   },
   (example) => ({
     nameIndex: index("name_idx").on(example.name),
+    urlIndex: index("url_idx").on(example.url),
   }),
 );
